@@ -3,6 +3,7 @@ import os
 from time import sleep
 import keyboard
 
+#Caminho das imagens
 caminho_site = os.path.abspath("site.jpg")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 caminho_xml = os.path.abspath("xml.jpg")
 caminho_robo = os.path.abspath("robo.jpg")
@@ -11,8 +12,9 @@ caminho_down = os.path.abspath("down.jpg")
 caminho_ok = os.path.abspath("ok.jpg")
 caminho_salvar = os.path.abspath("salvar.jpg")
 
+#Funções
 
-
+#Clicar no caminho no caminho do site
 def clicar_site(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -27,7 +29,8 @@ def clicar_site(importe, tentativas=200):
             print(f"Procurando_clicar_site{e}")
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
-       
+    
+#Clicar na linha do xml       
 def clicar_xml(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -44,6 +47,7 @@ def clicar_xml(importe, tentativas=200):
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
 
+#Clicar no não sou robô
 def clicar_robo(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -59,21 +63,7 @@ def clicar_robo(importe, tentativas=200):
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
 
-def clicar_robo_verde(importe, tentativas=200):
-    for _ in range(tentativas):
-        try:
-            posicao = P.locateOnScreen(importe, confidence=0.9)
-            if posicao is not None:
-                centro_x, centro_y = P.center(posicao)
-                P.click(centro_x, centro_y)
-                break
-            else:               
-                print(f"...")
-        except Exception as e:
-            print(f"Procurando_clicar_robo_verde {e}")
-    else:
-        raise Exception(f"Erro {tentativas} tentativas.")
-
+#Verificar se o não sou robo funcionou
 def clicar_robo_verde(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -95,6 +85,7 @@ def clicar_robo_verde(importe, tentativas=200):
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
 
+#Clicar em baixar o xml
 def clicar_down(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -110,6 +101,7 @@ def clicar_down(importe, tentativas=200):
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
 
+#Clicar ok
 def clicar_ok(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -125,7 +117,8 @@ def clicar_ok(importe, tentativas=200):
             print(f"Procurando_clicar_okn {e}")
     else:
         raise Exception(f"Erro {tentativas} tentativas.")
-    
+
+#Salvar na pasta    
 def clicar_salvar(importe, tentativas=200):
     for _ in range(tentativas):
         try:
@@ -147,6 +140,7 @@ with open('texto.txt', 'r') as arquivo:
         # Remover espaços em branco no início e no final da linha
         linha = linha.strip()
         
+        #Ordem dos comandos
         try:
             clicar_site(caminho_site)
             clicar_xml(caminho_xml)
@@ -155,5 +149,6 @@ with open('texto.txt', 'r') as arquivo:
             clicar_down(caminho_down)
             clicar_ok(caminho_ok)
             clicar_salvar(caminho_salvar)
+
         except Exception as e:
             print(f"Erro geral: {e}")    
